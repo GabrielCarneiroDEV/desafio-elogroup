@@ -1,0 +1,44 @@
+.container-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    background: white;
+
+    height: 400px;
+    width: 500px;
+    border-radius: 10px;
+   
+    box-shadow: 1px 1px 2px 1px rgba(43, 43, 43, 0.521);
+    
+}
+
+.container-home h1{
+    margin-top: 30px;
+}
+
+.container-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 80px;
+}
+
+.btn{
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    border: black solid 1px;
+    background-color: white;
+    padding: 20px;
+    width: 200px;
+    border-radius: 8px;
+}
+
+.btn:hover{
+    background-color: black;
+    color: white;
+    box-shadow: 2px 3px 2px  rgba(0, 0, 0, 0.233);
+}

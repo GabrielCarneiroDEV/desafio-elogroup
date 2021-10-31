@@ -1,0 +1,112 @@
+.container-signup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 30px;
+    background-color: white;
+ 
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
+   
+    box-shadow: 1px 1px 2px 1px rgba(43, 43, 43, 0.521);
+    
+}
+
+.container-signup h1{
+    margin-top: 30px;
+}
+
+.form-signup{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.form-signup div{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.form-signup label{
+    font-size: 14px;
+}
+.btn-login-modal{
+    all: unset;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    border: black solid 1px;
+    background-color: white;
+    padding: 10px;
+    width: 100px;
+    border-radius: 6px;
+}
+
+.btn-login-modal:hover{
+    background-color: black;
+    color: white;
+    
+    box-shadow: 2px 3px 2px  rgba(0, 0, 0, 0.233);
+}
+
+input{
+    padding: 10px 20px;
+}
+
+
+.close{
+    position: fixed;
+    width: 30px;
+    align-self: flex-end;
+    margin-top: 20px;
+    
+    cursor: pointer;
+
+}
+.modal-success-background{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    
+    align-items: flex-start;
+    padding-top: 8%;
+    background-color: rgba(0, 0, 0, 0.219);
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.modal-success-container{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    min-height: 150px;
+    width: 250px;
+    padding: 8px 20px;
+}
+.modal-success-container span{
+    margin-top: 30px;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(133, 247, 133);
+    text-align: center;
+    border-radius: 8px;
+    padding: 6px;
+    
+}
+
+.close-modal{
+    position: fixed;
+    cursor: pointer;
+    align-self: flex-end;
+    width: 20px;
+}
+
