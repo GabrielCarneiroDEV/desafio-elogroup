@@ -140,25 +140,6 @@
   background-color: rgba(0, 0, 0, 0.253);
 }
 
-.modal-add-leads {
-  display: flex;
-  flex-direction: column;
-
-  background-color: white;
-  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.37);
-
-  min-height: 400px;
-  width: 400px;
-  border-radius: 10px;
-  padding: 22px;
-}
-
-.close-modal-leads {
-  height: fit-content;
-  align-self: flex-end;
-  cursor: pointer;
-}
-
 .right {
   cursor: default;
 }
