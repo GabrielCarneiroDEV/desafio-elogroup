@@ -1,0 +1,54 @@
+.backdrop-details {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.199);
+}
+.container-infos-detailed {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(173, 108, 235);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.container-details {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px 20px 12px 20px;
+  height: fit-content;
+  width: fit-content;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.container-checkeds-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  color: white;
+  background-color: rgb(100, 241, 100);
+  border-radius: 8px;
+}
+
+.container-details h2 {
+  background-color: rgb(235, 98, 98);
+  color: white;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.container-details img {
+  align-self: flex-end;
+  cursor: pointer;
+}

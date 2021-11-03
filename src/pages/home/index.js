@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
 
-function ContainerHome() {
+function Home() {
   return (
     <div className="container-home">
       <h1>Bem-Vindo</h1>
@@ -17,4 +17,4 @@ function ContainerHome() {
   );
 }
 
-export default ContainerHome;
+export default Home;

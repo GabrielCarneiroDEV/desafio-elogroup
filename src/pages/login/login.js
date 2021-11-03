@@ -6,7 +6,7 @@ import iconPasswordVisible from "../../assets/password-visible.svg";
 import useUsers from "../../hooks/useUsers";
 import "./styles.css";
 
-function ContainerLogin() {
+function Login() {
   const { userLocalStorage, setToken, openModal, setOpenModal } = useUsers();
 
   const [userLogin, setUserLogin] = useState({ username: "", password: "" });
@@ -90,4 +90,4 @@ function ContainerLogin() {
   );
 }
 
-export default ContainerLogin;
+export default Login;

@@ -1,4 +1,5 @@
 import closeIcon from "../../assets/fechar.svg";
+import "./styles.css";
 
 function LeadDetails({ leads, openDetails, setOpenDetails }) {
   const detailedLead = leads.find((lead) => lead.id === openDetails);

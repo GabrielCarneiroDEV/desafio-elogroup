@@ -6,7 +6,7 @@ import iconPasswordVisible from "../../assets/password-visible.svg";
 import useUsers from "../../hooks/useUsers";
 import "./styles.css";
 
-function ContainerSignup() {
+function SignUp() {
   const {
     userLocalStorage,
     setUserLocalStorage,
@@ -154,4 +154,4 @@ function ContainerSignup() {
   );
 }
 
-export default ContainerSignup;
+export default SignUp;

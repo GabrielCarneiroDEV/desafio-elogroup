@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocalStorage } from "react-use";
 import closeIcon from "../../assets/fechar.svg";
 import useUsers from "../../hooks/useUsers";
+import "./styles.css";
 
 function ContainerModalForm({
   setOpenForm,
