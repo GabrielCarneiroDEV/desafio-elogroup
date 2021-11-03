@@ -10,7 +10,7 @@ Após logado na plataforma, o usuário pode gerenciar *Leads* criando, editando 
 Os *Leads* criados pelo usuário também são persistidos diretamente no LocalStorage, mesmo que vários usuários efetuem cadastro, a aplicação exibe apenas os *Leads* do seu usuário correspondente.
 
 
-<h4><a href="https://desafio-elogroup.vercel.app">Clique aqui para testar a aplicação</a></h4>
+<h4><a target="_blank" href="https://desafio-elogroup.vercel.app">Clique aqui para testar a aplicação</a></h4>
 
 ---
 ## 🛠  Stack
