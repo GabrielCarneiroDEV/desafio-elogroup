@@ -76,6 +76,7 @@ function ContainerModalForm({
             <div>
               <label htmlFor="">Nome:</label>
               <input
+                className="input-text"
                 type="text"
                 value={newLead.nome}
                 onChange={(e) =>
@@ -88,6 +89,7 @@ function ContainerModalForm({
             <div>
               <label htmlFor="">Telefone:</label>
               <input
+                className="input-text"
                 type="phone"
                 maxLength="15char"
                 value={newLead.telefone}
@@ -104,17 +106,20 @@ function ContainerModalForm({
                   setNewLead({ ...newLead, telefone: e.target.value });
                 }}
                 placeholder="inserir telefone..."
+                required
               />
             </div>
             <div>
               <label htmlFor="">Email:</label>
               <input
+                className="input-text"
                 type="email"
                 value={newLead.email}
                 onChange={(e) =>
                   setNewLead({ ...newLead, email: e.target.value })
                 }
                 placeholder="inserir email..."
+                required
               />
             </div>
             <div className="checkbox header-check">
@@ -192,7 +197,7 @@ function ContainerModalForm({
         >
           <div className={`modal-success-container `}>
             <img
-              className="close-modal"
+              className="close-modal close"
               src={closeIcon}
               alt="Fechar"
               onClick={() => {
@@ -203,7 +208,7 @@ function ContainerModalForm({
             <span>Lead criado com sucesso!</span>
             {
               <button
-                className={`btn-login-modal `}
+                className={`btn-login-modal btn`}
                 onClick={() => setOpenModal(false)}
               >
                 OK

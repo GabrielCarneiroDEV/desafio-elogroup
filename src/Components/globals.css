@@ -22,7 +22,7 @@ input {
   border: rgba(0, 0, 0, 0.459) solid 1px;
   background-color: white;
   padding: 20px;
-  min-width: 200px;
+  width: 200px;
   border-radius: 8px;
 }
 

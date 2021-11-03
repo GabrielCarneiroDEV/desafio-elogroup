@@ -84,6 +84,7 @@ function ContainerModalEditForm({
           <div>
             <label htmlFor="">Nome:</label>
             <input
+              className="input-text"
               type="text"
               value={newLead.nome}
               onChange={(e) => setNewLead({ ...newLead, nome: e.target.value })}
@@ -94,6 +95,7 @@ function ContainerModalEditForm({
           <div>
             <label htmlFor="">Telefone:</label>
             <input
+              className="input-text"
               type="phone"
               maxLength="15char"
               value={newLead.telefone}
@@ -115,6 +117,7 @@ function ContainerModalEditForm({
           <div>
             <label htmlFor="">Email:</label>
             <input
+              className="input-text"
               type="email"
               value={newLead.email}
               onChange={(e) =>

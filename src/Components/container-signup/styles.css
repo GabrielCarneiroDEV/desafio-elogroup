@@ -26,6 +26,8 @@
 
 .btn-signup {
   align-self: center;
+  width: 260px;
+  margin-top: 20px;
 }
 
 .modal-success-background {

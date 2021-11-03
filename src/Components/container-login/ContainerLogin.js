@@ -41,7 +41,10 @@ function ContainerLogin() {
         className="close"
         src={imgClose}
         alt="Fechar"
-        onClick={() => history.push("/")}
+        onClick={() => {
+          setOpenModal(false);
+          history.push("/");
+        }}
       />
       <form className="form" onSubmit={handleLogin}>
         <div>

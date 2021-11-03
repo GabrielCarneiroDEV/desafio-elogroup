@@ -83,7 +83,13 @@ function ContainerSignup() {
         className="close"
         src={imgClose}
         alt="Fechar"
-        onClick={() => history.push("/")}
+        onClick={() => {
+          setMessage({
+            message: "Usuário cadastrado com sucesso!",
+            error: false,
+          });
+          history.push("/");
+        }}
       />
       {message.error && <span className="failed">{message.message}</span>}
       <form className="form" onSubmit={handleSubmit}>

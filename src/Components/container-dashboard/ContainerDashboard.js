@@ -3,7 +3,7 @@ import { useLocalStorage } from "react-use";
 import deleteIcon from "../../assets/delete-white.svg";
 import detailsIcon from "../../assets/details-white.svg";
 import editIcon from "../../assets/edit-white.svg";
-import closeIcon from "../../assets/fechar.svg";
+import closeWhiteIcon from "../../assets/fechar white.svg";
 import useUsers from "../../hooks/useUsers";
 import "../globals.css";
 import ContainerModalEditForm from "./ContainerModalEditForm";
@@ -94,7 +94,7 @@ function ContainerDashboard() {
                       <div className="delete-confirm">
                         <img
                           onClick={() => setOpenConfirmDelete(null)}
-                          src={closeIcon}
+                          src={closeWhiteIcon}
                           alt="fechar"
                           className="close-confirm"
                         />
@@ -165,7 +165,7 @@ function ContainerDashboard() {
                       <div className="delete-confirm">
                         <img
                           onClick={() => setOpenConfirmDelete(null)}
-                          src={closeIcon}
+                          src={closeWhiteIcon}
                           alt="fechar"
                           className="close-confirm"
                         />
@@ -243,7 +243,7 @@ function ContainerDashboard() {
                       <div className="delete-confirm">
                         <img
                           onClick={() => setOpenConfirmDelete(null)}
-                          src={closeIcon}
+                          src={closeWhiteIcon}
                           alt="fechar"
                           className="close-confirm"
                         />
