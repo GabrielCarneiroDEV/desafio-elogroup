@@ -1,14 +1,10 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
-import Cadastrar from "./pages/Signup";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ProtectedRoutes from "./Components/protected-routes/ProtectedRoutes";
+import { UsersListProvider } from "./contexts/users-contexts/usersContext";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import ProtectedRoutes from "./Components/protected-routes/ProtectedRoutes";
-import { UsersListProvider } from "./contexts/users-contexts/usersContext"
-import Dashboard from "./pages/Dashboard";
+import Cadastrar from "./pages/Signup";
 
 function App() {
   return (
@@ -18,12 +14,11 @@ function App() {
           <UsersListProvider>
             <Route path="/cadastrar" component={Cadastrar} />
             <Route path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
             <ProtectedRoutes>
               <Route path="/dashboard" component={Dashboard} />
             </ProtectedRoutes>
-            <Route exact path="/" component={Home} />
           </UsersListProvider>
-
         </Switch>
       </Router>
     </div>

@@ -1,10 +1,7 @@
 import ContainerSignup from "../Components/container-signup/ContainerSignup";
 
 function SignUp() {
-    return (
-        <ContainerSignup/>
-    )
-
+  return <ContainerSignup />;
 }
 
 export default SignUp;

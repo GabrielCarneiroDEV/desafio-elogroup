@@ -1,143 +1,335 @@
-.container-dashboard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+.container-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
-    background: white;
-    padding-bottom: 30px;
+  background: white;
+  box-shadow: 1px 1px 3px 1px rgba(43, 43, 43, 0.521);
 
-    min-height: 500px;
-    width:fit-content;
-    border-radius: 10px;
-    padding:0 90px;
-    box-shadow: 1px 1px 2px 1px rgba(43, 43, 43, 0.521);
-    
+  padding-bottom: 30px;
+  border-radius: 10px;
+  padding: 0 90px;
+  min-height: 500px;
+  width: fit-content;
 }
 
-.container-dashboard h1{
-    margin-top: 30px;
+.container-dashboard h1 {
+  margin-top: 30px;
 }
 
-.btn-add-lead{
-    align-self:flex-end;
-    padding: 8px;
-    width: 150px;
-    
-}
-.btn-logout{
-    align-self:flex-end;
-    padding: 8px;
-    width: fit-content;
-    
-}
-.container-table{
-    display: flex;
-    flex-direction: column;
-    
-    height:fit-content;
-    justify-content: space-around;
-    min-width: 60%;
-    padding: 12px;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.226);
-    border-radius: 10px;
-
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  gap: 20px;
 }
 
-.table-titles{
-    display: flex;
-    flex-direction:row ;
-    justify-content: space-around;
-    gap: 20px;
-    
-    border-bottom: solid rgba(0, 0, 0, 0.226) 1px;
-    padding :12px 0;
-   
+.btn-add-lead {
+  align-self: flex-end;
+  padding: 8px;
+  width: 150px;
+}
+.btn-logout {
+  align-self: flex-end;
+  padding: 8px;
+  width: fit-content;
+}
+.container-table {
+  display: flex;
+  flex-direction: column;
+
+  height: fit-content;
+  justify-content: space-around;
+  min-width: 60%;
+  padding: 12px;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.226);
+  border-radius: 10px;
 }
 
-.table-titles h2{
-    min-height: fit-content;
-    font-size: 18px;
-    border-left: solid rgba(0, 0, 0, 0.226) 1px;
-    font-weight: 500;
-    border-right: solid rgba(0, 0, 0, 0.226) 1px;
-    border-radius: 8px;
-    padding: 4px 20px;
-    box-shadow: 1px 1px 1px 1px  rgba(0, 0, 0, 0.37);
+.table-titles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 20px;
 
-    
-  
-
+  border-bottom: solid rgba(0, 0, 0, 0.226) 1px;
+  padding: 12px 0;
 }
 
-
-.lead{
-   
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-
+.table-titles h2 {
+  min-height: fit-content;
+  font-size: 18px;
+  border-left: solid rgba(0, 0, 0, 0.226) 1px;
+  font-weight: 700;
+  border-right: solid rgba(0, 0, 0, 0.226) 1px;
+  border-radius: 8px;
+  padding: 4px 20px;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.37);
+  color: rgb(53, 53, 53);
 }
 
 .border-solid {
-    border-right: 2px black solid;
+  border-right: 2px black solid;
 }
-.container-leads{
-    display: flex;
-    flex-direction: column;
-   
-    gap: 10px;
- 
-  
+.container-leads {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
 }
 
-.lead{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.356);
-    border-radius:10px;
-    cursor:grab;
-    background-color: rgba(0, 0, 0, 0.911);
-    color: white;
+.lead {
+  display: flex;
+  align-items: flex-start;
+
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.356);
+  border-radius: 8px;
+  cursor: grab;
+  background-color: rgba(0, 0, 0, 0.911);
+  color: white;
+  padding-right: 10px;
 }
 
-.lead:active{
-    cursor: grabbing;
-    background: rgb(156, 255, 156);
-    color: white;
-    
+.lead span {
+  margin-left: 20px;
 }
 
-.lead span{
-    font-size: 16px;
-    font-weight: 400;
+.left:active,
+.center:active {
+  cursor: grabbing;
 
-
+  color: white;
 }
 
-.column-left, .column-center, .column-right{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-right:30px;
-
+.lead span {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.empty{
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.356);
-    border-radius:3px;
-    
-   
-    color: white;
-    height: 23px;
-   
+.column-left,
+.column-center,
+.column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 30px;
 }
 
+.empty {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.356);
+  height: 23px;
+  border-radius: 3px;
+}
+
+.backdrop-modal-leads {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.253);
+}
+
+.modal-add-leads {
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.37);
+
+  min-height: 400px;
+  width: 400px;
+  border-radius: 10px;
+  padding: 22px;
+}
+
+.close-modal-leads {
+  height: fit-content;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.form-lead input {
+  width: 100%;
+}
+
+.form .checkbox {
+  align-items: center;
+
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.37);
+  border-radius: 16px;
+
+  padding-left: 12px;
+  height: 25px;
+  width: fit-content;
+  flex-direction: row;
+}
+
+.form .checkbox input {
+  align-self: center;
+  width: 30px;
+  height: auto;
+  cursor: pointer;
+}
+
+.form .container-checkbox {
+  width: 70%;
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.185);
+  height: 80px;
+  align-self: center;
+}
+
+.header-check {
+  align-self: center;
+  margin-bottom: -10px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.form-lead {
+  gap: 20px;
+  margin-top: 0;
+}
+
+.btn-send-lead {
+  align-self: center;
+}
+
+.right {
+  cursor: default;
+}
+
+.lead .container-icons {
+  display: flex;
+
+  justify-content: space-around;
+  align-self: flex-start;
+  border-right: 1px solid rgba(255, 255, 255, 0.562);
+  padding-right: 5px;
+}
+
+.container-icons img {
+  cursor: pointer;
+}
+
+.delete-confirm {
+  position: fixed;
+  min-width: 100px;
+  min-height: 80px;
+  background-color: rgb(255, 100, 100);
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 4px rgba(0, 0, 0, 0.151);
+  padding: 8px;
+}
+
+.close-confirm {
+  align-self: flex-end;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.delete-confirm span {
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  margin-left: 0;
+}
+
+.container-buttons-confirm-delete {
+  display: flex;
+  gap: 10px;
+}
+
+.container-buttons-confirm-delete .btn {
+  margin-top: 12px;
+  max-width: 40px;
+  max-height: 40px;
+  padding: 0;
+  font-size: 10px;
+  color: black;
+}
+
+.container-buttons-confirm-delete .btn:hover {
+  color: white;
+}
+
+.backdrop-details {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.199);
+}
+
+.container-infos-detailed {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(173, 108, 235);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+.container-details {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px 20px 12px 20px;
+  height: fit-content;
+  width: fit-content;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.container-checkeds-detailed {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  color: white;
+  background-color: rgb(100, 241, 100);
+  border-radius: 8px;
+}
+
+.container-details h2 {
+  background-color: rgb(235, 98, 98);
+  color: white;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.container-details img {
+  align-self: flex-end;
+  cursor: pointer;
+}
