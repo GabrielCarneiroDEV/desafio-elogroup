@@ -4,7 +4,7 @@
 
 ## 💻 Sobre
 
-Projeto criado durante o desáfio técnico da EloGroup.
+Projeto criado durante o desafio técnico da EloGroup.
 O projeto criado utilizando React cadastra usuários persistindo suas informações em *LocalStorage*.
 Após logado na plataforma, o usuário pode gerenciar *Leads* criando, editando e modificando o seu *status*.
 Os *Leads* criados pelo usuário também são persistidos diretamente no LocalStorage, mesmo que vários usuários efetuem cadastro, a aplicação exibe apenas os *Leads* do seu usuário correspondente.
