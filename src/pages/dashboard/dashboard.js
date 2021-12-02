@@ -10,6 +10,7 @@ import ColumnRight from "../../Components/column-right/ColumnRight";
 import ContainerModalEditForm from "../../Components/container-modal-edit-form/ContainerModalEditForm";
 import ContainerModalForm from "../../Components/container-modal-form/ContainerModalForm";
 import LeadDetails from "../../Components/lead-details/LeadDetails";
+import toast from "../../helpers/toast";
 import useUsers from "../../hooks/useUsers";
 import "../../styles/globals.css";
 import "./styles.css";
@@ -29,16 +30,66 @@ function Dashboard() {
   const [stateLead, setStateLead] = useState("left");
   const [leads, setLeads] = useState([]);
 
-  useEffect(() => {
-    setAllLeads(leadsLocalStorage);
-    setLeads(leadsLocalStorage.filter((x) => x.userId === token));
-    // eslint-disable-next-line
-  }, [leadsLocalStorage]);
+  // useEffect(() => {
+  //   setAllLeads(leadsLocalStorage);
+  //   setLeads(leadsLocalStorage.filter((x) => x.userId === token));
+  //   // eslint-disable-next-line
+  // }, [leadsLocalStorage]);
 
-  function handleDeleteLead(e) {
-    setLeadsLocalStorage(
-      leadsLocalStorage.filter((lead) => lead.id !== Number(e.target.id))
-    );
+  useEffect(() => {
+    getLeads();
+    console.log("a")
+    // eslint-disable-next-line
+  }, [openForm, openConfirmDelete, editingLead]);
+
+  async function handleDeleteLead(e) {
+    try {
+      const response = await fetch(`https://api-leads-control.herokuapp.com/leads/${Number(e.target.id)}`, 
+      {
+        method: "DELETE",
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+
+        }
+       
+      })
+      const data = await response.json()
+      
+      if(!response.ok){        
+        throw new Error(data.mensagem)
+      }  
+      setOpenConfirmDelete(null)
+
+    } catch (error) {
+     return toast.messageError(error.message);
+      
+    }
+  }
+
+  async function getLeads() {
+    try {
+      const response = await fetch(
+        "https://api-leads-control.herokuapp.com/leads",
+        {
+          method: "GET",
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
+      
+      const data = await response.json();
+     
+      setLeads(data);
+
+      if(!response.ok){        
+        throw new Error(data.mensagem);
+      }
+
+      toast.messageSuccess(data.mensagem);
+    
+    } catch (error) {}
   }
 
   return (
@@ -88,6 +139,7 @@ function Dashboard() {
             dragId={dragId}
             stateLead={stateLead}
             allLeads={allLeads}
+            setAllLeads={setAllLeads}
           />
           <ColumnRight
             leads={leads}
@@ -131,6 +183,8 @@ function Dashboard() {
           leadsLocalStorage={leadsLocalStorage}
           openForm={openForm}
           setOpenForm={setOpenForm}
+          setLeads={setLeads}
+          leads={leads}
         />
       ) : (
         ""

@@ -73,10 +73,9 @@ function Login() {
       />
       <form className="form" onSubmit={handleLogin}>
         <div>
-          <label htmlFor="username">Usuário:</label>
+          <label htmlFor="username">Nome:</label>
           <input
             className="input-text"
-            required
             value={userLogin.username}
             onChange={(e) => {
               setUserLogin({ ...userLogin, username: e.target.value });
@@ -90,7 +89,6 @@ function Login() {
           <label htmlFor="password">Senha:</label>
           <input
             className="input-text"
-            required
             value={userLogin.password}
             onChange={(e) => {
               setUserLogin({ ...userLogin, password: e.target.value });

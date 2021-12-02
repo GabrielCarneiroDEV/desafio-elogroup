@@ -1,3 +1,6 @@
+import toast from "../../helpers/toast"
+import useUsers from "../../hooks/useUsers"
+
 function ColumnCenter({
   leads,
   setDragId,
@@ -16,6 +19,37 @@ function ColumnCenter({
   stateLead,
   allLeads,
 }) {
+  const { token } = useUsers()
+  async function updateLeadPosition(id, position){
+    try {
+      const response = await fetch(`https://api-leads-control.herokuapp.com/updatePosition/${Number(id)}`, 
+      {
+        method: "PUT",
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+
+        },
+        body: JSON.stringify({position})
+        
+      })
+      const data = await response.json()
+      
+      if(!response.ok){        
+        throw new Error(data.mensagem)
+      }  
+
+      const lead = leads.find(x => x.id === id);
+      lead.position = position;
+
+    } catch (error) {
+     return toast.messageError(error.message);
+      
+    }
+
+  }
+
+
   return (
     <div className="column-center border-solid">
       <h2>Dados Confirmados</h2>
@@ -54,7 +88,7 @@ function ColumnCenter({
                   alt=""
                 />
               </div>
-              <span>{lead.nome}</span>
+              <span>{lead.name}</span>
               {openConfirmDelete === lead.id && (
                 <div className="delete-confirm">
                   <img
@@ -63,7 +97,7 @@ function ColumnCenter({
                     alt="fechar"
                     className="close-confirm"
                   />
-                  <span>Deletar {lead.nome}? </span>
+                  <span>Deletar {lead.name}? </span>
                   <div className="container-buttons-confirm-delete">
                     <button
                       id={lead.id}
@@ -94,11 +128,12 @@ function ColumnCenter({
               onDrop={(e) => {
                 setStateLead("center");
                 lead.position = lead.id === dragId.id ? stateLead : "left";
-                const indexLead = allLeads.indexOf(lead);
+                updateLeadPosition(lead.id, lead.id === dragId.id ? stateLead : "left")
+                 const indexLead = allLeads.indexOf(lead);
 
                 allLeads.splice(indexLead, 1, lead);
 
-                setLeadsLocalStorage(allLeads);
+                 setLeadsLocalStorage(allLeads);
               }}
             />
           )

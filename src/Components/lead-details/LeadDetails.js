@@ -8,16 +8,16 @@ function LeadDetails({ leads, openDetails, setOpenDetails }) {
     <div className="backdrop-details" onClick={() => setOpenDetails(-1)}>
       <div className="container-details" onClick={(e) => e.stopPropagation()}>
         <img src={closeIcon} alt="" onClick={() => setOpenDetails(-1)} />
-        <h2>{detailedLead.nome}</h2>
+        <h2>{detailedLead.name}</h2>
         <div className="container-infos-detailed">
-          <span>{detailedLead.telefone}</span>
+          <span>{detailedLead.phone}</span>
           <span>{detailedLead.email}</span>
         </div>
         <div className="container-checkeds-detailed">
-          <span>{detailedLead.checkRPA ? "RPA" : ""}</span>
-          <span>{detailedLead.checkPD ? "Produto Digital" : ""}</span>
-          <span>{detailedLead.checkBPM ? "BPM" : ""}</span>
-          <span>{detailedLead.checkAna ? "Analytics" : ""}</span>
+          <span>{detailedLead.rpa ? "RPA" : ""}</span>
+          <span>{detailedLead.pd ? "Produto Digital" : ""}</span>
+          <span>{detailedLead.bpm ? "BPM" : ""}</span>
+          <span>{detailedLead.analytics ? "Analytics" : ""}</span>
         </div>
       </div>
     </div>

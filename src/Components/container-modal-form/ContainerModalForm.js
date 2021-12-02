@@ -9,24 +9,24 @@ import "./styles.css";
 function ContainerModalForm({
   setOpenForm,
   openForm,
-  setLeadsLocalStorage,
-  leadsLocalStorage,
+  setLeads,
+  leads
 }) {
   const [lastIdLocalStorage, setLastIdLocalStorage] = useLocalStorage(
     "lastId",
     0
   );
 
-  const { setOpenModal, openModal, token } = useUsers();
+  const { token } = useUsers();
 
   const [newLead, setNewLead] = useState({
-    nome: "",
-    telefone: "",
+    name: "",
+    phone: "",
     email: "",
-    checkRPA: false,
-    checkPD: false,
-    checkBPM: false,
-    checkAna: false,
+    rpa: false,
+    pd: false,
+    bpm: false,
+    analytics: false,
     position: "left",
     id: lastIdLocalStorage,
     userId: token,
@@ -35,34 +35,42 @@ function ContainerModalForm({
   function handleAllCheck(e) {
     setNewLead({
       ...newLead,
-      checkRPA: e.target.checked,
-      checkPD: e.target.checked,
-      checkBPM: e.target.checked,
-      checkAna: e.target.checked,
+      rpa: e.target.checked,
+      pd: e.target.checked,
+      bpm: e.target.checked,
+      analytics: e.target.checked,
     });
   }
 
-  function handleSubmitLead(e) {
+  async function handleSubmitLead(e) {
     e.preventDefault();
 
-    setNewLead({ ...newLead, id: lastIdLocalStorage });
+    try {
+      const response = await fetch(`https://api-leads-control.herokuapp.com/leads`, 
+      {
+        method: "POST",
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
 
-    setLeadsLocalStorage([...leadsLocalStorage, newLead]);
+        },
+        body: JSON.stringify(newLead)
+        
+      })
+      const data = await response.json();
+      
+      if(!response.ok){        
+        throw new Error(data.mensagem);
+      }  
+      setLeads([...leads, newLead])
+      setOpenForm(false);
+      toast.messageSuccess("Lead criado com sucesso!");
 
-    setNewLead({
-      nome: "",
-      telefone: "",
-      email: "",
-      checkRPA: false,
-      checkPD: false,
-      checkBPM: false,
-      checkAna: false,
-      position: "left",
-      id: lastIdLocalStorage,
-    });
-    setOpenForm(false);
-    toast.messageSuccess("Lead criado com sucesso!")
-    setOpenModal(true);
+    } catch (error) {
+     return toast.messageError(error.message);
+      
+    }   
+   
   }
   
   return (
@@ -82,9 +90,9 @@ function ContainerModalForm({
               <input
                 className="input-text"
                 type="text"
-                value={newLead.nome}
+                value={newLead.name}
                 onChange={(e) =>
-                  setNewLead({ ...newLead, nome: e.target.value })
+                  setNewLead({ ...newLead, name: e.target.value })
                 }
                 placeholder="inserir nome..."
                 required
@@ -96,7 +104,7 @@ function ContainerModalForm({
                 className="input-text"
                 type="phone"
                 maxLength="15char"
-                value={newLead.telefone}
+                value={newLead.phone}
                 onChange={(e) => {
                   e.target.value = e.target.value.replace(/\D/g, "");
                   e.target.value = e.target.value.replace(
@@ -107,7 +115,7 @@ function ContainerModalForm({
                     /(\d)(\d{4})$/,
                     "$1-$2"
                   );
-                  setNewLead({ ...newLead, telefone: e.target.value });
+                  setNewLead({ ...newLead, phone: e.target.value });
                 }}
                 placeholder="inserir telefone..."
                 required
@@ -142,9 +150,9 @@ function ContainerModalForm({
                   type="checkbox"
                   id="rpa"
                   onChange={(e) =>
-                    setNewLead({ ...newLead, checkRPA: e.target.checked })
+                    setNewLead({ ...newLead, rpa: e.target.checked })
                   }
-                  checked={newLead.checkRPA}
+                  checked={newLead.rpa}
                 />
               </div>
 
@@ -154,7 +162,7 @@ function ContainerModalForm({
                   type="checkbox"
                   id="produtodigital"
                   onChange={(e) =>
-                    setNewLead({ ...newLead, checkPD: e.target.checked })
+                    setNewLead({ ...newLead, pd: e.target.checked })
                   }
                   checked={newLead.checkPD}
                 />
@@ -165,9 +173,9 @@ function ContainerModalForm({
                   type="checkbox"
                   id="analytics"
                   onChange={(e) =>
-                    setNewLead({ ...newLead, checkAna: e.target.checked })
+                    setNewLead({ ...newLead, analytics: e.target.checked })
                   }
-                  checked={newLead.checkAna}
+                  checked={newLead.analytics}
                 />
               </div>
               <div className="checkbox">
@@ -176,9 +184,9 @@ function ContainerModalForm({
                   type="checkbox"
                   id="bpm"
                   onChange={(e) =>
-                    setNewLead({ ...newLead, checkBPM: e.target.checked })
+                    setNewLead({ ...newLead, bpm: e.target.checked })
                   }
-                  checked={newLead.checkBPM}
+                  checked={newLead.bpm}
                 />
               </div>
             </div>
@@ -191,38 +199,7 @@ function ContainerModalForm({
           </form>
         </div>
       )}
-      {openModal && (
-        
-        <div
-   
-          className="modal-success-background"
-          onClick={() => {
-            setOpenModal(false);
-            setOpenForm(false);
-          }}
-        >
-          <div className={`modal-success-container `}>
-            <img
-              className="close-modal close"
-              src={closeIcon}
-              alt="Fechar"
-              onClick={() => {
-                setOpenModal(false);
-                setOpenForm(false);
-              }}
-            />
-            <span>Lead criado com sucesso!</span>
-            {
-              <button
-                className={`btn-login-modal btn`}
-                onClick={() => setOpenModal(false)}
-              >
-                OK
-              </button>
-            }
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }

@@ -49,7 +49,7 @@ function ColumnLeft({
                   alt=""
                 />
               </div>
-              <span>{lead.nome}</span>
+              <span>{lead.name}</span>
               {openConfirmDelete === lead.id && (
                 <div className="delete-confirm">
                   <img
@@ -58,7 +58,7 @@ function ColumnLeft({
                     alt="fechar"
                     className="close-confirm"
                   />
-                  <span>Deletar {lead.nome}? </span>
+                  <span>Deletar {lead.name}? </span>
                   <div className="container-buttons-confirm-delete">
                     <button
                       id={lead.id}

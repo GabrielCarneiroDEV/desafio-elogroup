@@ -1,3 +1,6 @@
+import toast from "../../helpers/toast";
+import useUsers from "../../hooks/useUsers";
+
 function ColumnRight({
   leads,
   setOpenConfirmDelete,
@@ -15,6 +18,32 @@ function ColumnRight({
   stateLead,
   allLeads,
 }) {
+  const { token } = useUsers()
+  async function updateLeadPosition(id, position){
+    try {
+      const response = await fetch(`https://api-leads-control.herokuapp.com/updatePosition/${Number(id)}`, 
+      {
+        method: "PUT",
+        headers: {
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${token}`
+
+        },
+        body: JSON.stringify({position})
+        
+      })
+      const data = await response.json()
+      
+      if(!response.ok){        
+        throw new Error(data.mensagem)
+      }  
+
+    } catch (error) {
+     return toast.messageError(error.message);
+      
+    }
+
+  }
   return (
     <div className="column-right">
       <h2>Reunião Agendada</h2>
@@ -42,7 +71,7 @@ function ColumnRight({
                   alt=""
                 />
               </div>
-              <span>{lead.nome}</span>
+              <span>{lead.name}</span>
               {openConfirmDelete === lead.id && (
                 <div className="delete-confirm">
                   <img
@@ -51,7 +80,7 @@ function ColumnRight({
                     alt="fechar"
                     className="close-confirm"
                   />
-                  <span>Deletar {lead.nome}? </span>
+                  <span>Deletar {lead.name}? </span>
                   <div className="container-buttons-confirm-delete">
                     <button
                       id={lead.id}
@@ -87,11 +116,14 @@ function ColumnRight({
                   lead.id === dragId.id && dragId.lastPosition === "center"
                     ? stateLead
                     : "left";
+                    updateLeadPosition(lead.id, lead.id === dragId.id && dragId.lastPosition === "center"
+                    ? stateLead
+                    : "left");
                 const indexLead = allLeads.indexOf(lead);
 
-                allLeads.splice(indexLead, 1, lead);
+                 allLeads.splice(indexLead, 1, lead);
 
-                setLeadsLocalStorage(allLeads);
+                 setLeadsLocalStorage(allLeads);
               }}
             />
           )
