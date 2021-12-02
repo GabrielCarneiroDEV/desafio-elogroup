@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
+  useHistory
 } from "react-router-dom";
 import { UsersListProvider } from "./contexts/users-contexts/usersContext";
 import useUsers from "./hooks/useUsers";
@@ -28,17 +30,24 @@ function ProtectedRoutes(props) {
 }
 
 function Routes() {
+  const history = useHistory()
+  const { token } = useUsers();
+  useEffect(() => {
+    if(token){
+      history.push('/dashboard')
+    }
+  },[])
   return (
     <div className="App">
       <Router>
         <Switch>
           <UsersListProvider>
-            <Route path="/cadastrar" component={Cadastrar} />
-            <Route path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
             <ProtectedRoutes>
               <Route path="/dashboard" component={Dashboard} />
             </ProtectedRoutes>
+            <Route path="/cadastrar" component={Cadastrar} />
+            <Route path="/login" component={Login} />
+            <Route exact path="/" component={Home} />
           </UsersListProvider>
         </Switch>
       </Router>

@@ -16,6 +16,7 @@ function SignUp() {
     setMessage,
   } = useUsers();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const [user, setUser] = useState({
     username: "",
@@ -136,16 +137,16 @@ function SignUp() {
             onChange={(e) =>
               setUser({ ...user, confirmPassword: e.target.value })
             }
-            type={passwordVisible ? "text" : "password"}
+            type={confirmPasswordVisible ? "text" : "password"}
             id="confirmPassword"
             minLength="8 char"
             placeholder="Confirme a senha digitada."
           />
           <img
             className="changePasswordType"
-            src={passwordVisible ? iconPasswordVisible : iconPasswordInvisible}
+            src={confirmPasswordVisible ? iconPasswordVisible : iconPasswordInvisible}
             alt=""
-            onClick={() => setPasswordVisible(!passwordVisible)}
+            onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
           />
         </div>
         <button className="btn btn-signup">Cadastrar!</button>
