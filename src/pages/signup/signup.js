@@ -8,9 +8,8 @@ import toast from "../../helpers/toast"
 import "./styles.css";
 
 function SignUp() {
+  const history = useHistory();
   const {
-    userLocalStorage,
-    setUserLocalStorage,
     message,
     setMessage,
   } = useUsers();
@@ -21,32 +20,55 @@ function SignUp() {
     username: "",
     password: "",
     confirmPassword: "",
-    id: new Date().getTime(),
   });
 
-  const history = useHistory();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (user.password !== user.confirmPassword) {
       toast.messageError("Verifique sua senha e a confirmação.")
 
       return;
     }
-    const userVerify = userLocalStorage.find(
-      (x) => x.username === user.username
-    );
-    if (userVerify) {
-      toast.messageError("Nome indisponível")
-      return;
-    }
-    toast.messageSuccess("Usuário cadastrado com sucesso!");
-    history.push("/login");
 
+    try {
+      const response = await fetch('https://api-leads-control.herokuapp.com/register', 
+      {
+        method: "POST",
+        headers: {
+          'Content-Type':'application/json',
+
+        },
+        body: JSON.stringify({name: user.username, password:user.password})
+        
+      })
+      const data = await response.json()
+
+      if(!response.ok){        
+        throw new Error(data.mensagem)
+
+      }
+      toast.messageSuccess(data.mensagem)
+      setUser({ username: "", password: "", confirmPassword: "" });
+      history.push("/login");
+
+    } catch (error) {
+     return toast.messageError(error.message);
+      
+    }
+
+    //  const userVerify = userLocalStorage.find(
+    //   (x) => x.username === user.username
+    // );
+    // if (userVerify) {
+    //   toast.messageError("Nome indisponível")
+    //  return;
+    // }
+    //  toast.messageSuccess("Usuário cadastrado com sucesso!");
+   
   
 
-    setUserLocalStorage([...userLocalStorage, user]);
-    setUser({ username: "", password: "", confirmPassword: "" });
+    //setUserLocalStorage([...userLocalStorage, user]);
   }
 
   return (

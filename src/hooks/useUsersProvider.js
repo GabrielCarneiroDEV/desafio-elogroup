@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useLocalStorage } from "react-use";
 function useUsersProvider() {
-  const [userLocalStorage, setUserLocalStorage] = useLocalStorage(
-    "storage",
-    []
+  const [userLocalStorage, setUserLocalStorage, removeUserLocalStorage] = useLocalStorage(
+    "userInStorage",
+  {}
   );
-  const [token, setToken] = useLocalStorage("token", "");
+  const [token, setToken, removeToken] = useLocalStorage("token", "");
   const [message, setMessage] = useState({ message: "", error: false });
   const history = useHistory()
 
@@ -25,6 +25,8 @@ function useUsersProvider() {
     token,
     message,
     setMessage,
+    removeUserLocalStorage,
+    removeToken
   };
 }
 

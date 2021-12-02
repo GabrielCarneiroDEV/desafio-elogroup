@@ -8,28 +8,56 @@ import useUsers from "../../hooks/useUsers";
 import "./styles.css";
 
 function Login() {
-  const { userLocalStorage, setToken } = useUsers();
+  const { setUserLocalStorage, setToken } = useUsers();
 
   const [userLogin, setUserLogin] = useState({ username: "", password: "" });
   const history = useHistory();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
 
-    const findUser = userLocalStorage.find(
-      (user) => user.username === userLogin.username
-    );
+    
+    try {
+      const response = await fetch('https://api-leads-control.herokuapp.com/login', 
+      {
+        method: "POST",
+        headers: {
+          'Content-Type':'application/json',
 
-    if (findUser && findUser.password === userLogin.password) {
-      setToken(findUser.id);
-      setUserLogin({ username: "", password: "" });
+        },
+        body: JSON.stringify({name: userLogin.username, password:userLogin.password})
+        
+      })
+      const data = await response.json()
+      
+      if(!response.ok){        
+        throw new Error(data.mensagem)
+      }
+      setToken(data.token)
+      setUserLocalStorage({name: data.name, id: data.id})
+      toast.messageSuccess(`Bem-vindo ${data.name}!`)
+      setUserLogin({ username: "", password: "", confirmPassword: "" });
       history.push("/dashboard");
-    } else {
-      toast.messageError("Usuário ou senha incorretos!")
-      setToken();
+
+    } catch (error) {
+     return toast.messageError(error.message);
+      
     }
+
+    // const findUser = userLocalStorage.find(
+    //   (user) => user.username === userLogin.username
+    // );
+
+    // if (findUser && findUser.password === userLogin.password) {
+    //   setToken(findUser.id);
+    //   setUserLogin({ username: "", password: "" });
+    //   history.push("/dashboard");
+    // } else {
+    //   toast.messageError("Usuário ou senha incorretos!");
+    //   setToken();
+    // }
   }
 
   return (

@@ -23,7 +23,7 @@ function Dashboard() {
   const [openDetails, setOpenDetails] = useState(-1);
   const [openForm, setOpenForm] = useState(false);
   const [allLeads, setAllLeads] = useState([]);
-  const { setToken, token } = useUsers();
+  const { token, removeUserLocalStorage, removeToken } = useUsers();
   const [openConfirmDelete, setOpenConfirmDelete] = useState(null);
   const [dragId, setDragId] = useState({ id: 0, lastPosition: "" });
   const [stateLead, setStateLead] = useState("left");
@@ -49,7 +49,10 @@ function Dashboard() {
           Novo Lead (+)
         </button>
 
-        <button className="btn btn-logout" onClick={() => setToken("")}>
+        <button className="btn btn-logout" onClick={() => {
+          removeToken()
+          removeUserLocalStorage()
+          }}>
           Sair
         </button>
       </div>
