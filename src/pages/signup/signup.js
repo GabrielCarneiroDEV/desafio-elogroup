@@ -11,8 +11,6 @@ function SignUp() {
   const {
     userLocalStorage,
     setUserLocalStorage,
-    openModal,
-    setOpenModal,
     message,
     setMessage,
   } = useUsers();
@@ -44,7 +42,7 @@ function SignUp() {
     }
     toast.messageSuccess("Usuário cadastrado com sucesso!");
     history.push("/login");
-    setOpenModal(true);
+
   
 
     setUserLocalStorage([...userLocalStorage, user]);

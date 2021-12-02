@@ -7,7 +7,6 @@ function useUsersProvider() {
     []
   );
   const [token, setToken] = useLocalStorage("token", "");
-  const [openModal, setOpenModal] = useState(false);
   const [message, setMessage] = useState({ message: "", error: false });
   const history = useHistory()
 
@@ -24,8 +23,6 @@ function useUsersProvider() {
     userLocalStorage,
     setToken,
     token,
-    openModal,
-    setOpenModal,
     message,
     setMessage,
   };
