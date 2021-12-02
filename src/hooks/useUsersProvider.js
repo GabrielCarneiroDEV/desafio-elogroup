@@ -15,6 +15,7 @@ function useUsersProvider() {
     if(token){
       history.push('/dashboard')
     }
+    // eslint-disable-next-line
   },[])
 
 

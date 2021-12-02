@@ -4,6 +4,7 @@ import imgClose from "../../assets/fechar.svg";
 import iconPasswordInvisible from "../../assets/password-invisible.svg";
 import iconPasswordVisible from "../../assets/password-visible.svg";
 import useUsers from "../../hooks/useUsers";
+import toast from "../../helpers/toast"
 import "./styles.css";
 
 function SignUp() {
@@ -30,24 +31,21 @@ function SignUp() {
   function handleSubmit(event) {
     event.preventDefault();
     if (user.password !== user.confirmPassword) {
-      setMessage({
-        message: "Verifique sua senha e a confirmação.",
-        error: true,
-      });
+      toast.messageError("Verifique sua senha e a confirmação.")
+
       return;
     }
     const userVerify = userLocalStorage.find(
       (x) => x.username === user.username
     );
     if (userVerify) {
-      setMessage({
-        message: "O nome de usuário está indisponível.",
-        error: true,
-      });
+      toast.messageError("Nome indisponível")
       return;
     }
-    setMessage({ message: "Usuário cadastrado com sucesso!", error: false });
+    toast.messageSuccess("Usuário cadastrado com sucesso!");
+    history.push("/login");
     setOpenModal(true);
+  
 
     setUserLocalStorage([...userLocalStorage, user]);
     setUser({ username: "", password: "", confirmPassword: "" });
@@ -55,29 +53,6 @@ function SignUp() {
 
   return (
     <div className="container-signup">
-      {openModal && (
-        <div
-          className="modal-success-background"
-          onClick={() => setOpenModal(false)}
-        >
-          <div className={`modal-success-container`}>
-            <img
-              className="close close-modal"
-              src={imgClose}
-              alt="Fechar"
-              onClick={() => setOpenModal(false)}
-            />
-            <span>{message.message}</span>
-
-            <button
-              className={`btn-login-modal btn`}
-              onClick={() => history.push("/login")}
-            >
-              Entrar
-            </button>
-          </div>
-        </div>
-      )}
 
       <h1>Cadastrar</h1>
       <img

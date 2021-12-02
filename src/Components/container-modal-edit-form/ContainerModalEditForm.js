@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import close from "../../assets/fechar.svg";
+import toast from "../../helpers/toast";
 
 
 function ContainerModalEditForm({
@@ -71,7 +72,7 @@ function ContainerModalEditForm({
     allLeads.splice(indexLead, 1, newLead);
 
     setLeadsLocalStorage(allLeads);
-
+    toast.messageSuccess("Edição concluída com sucesso!")
     setEditingLead(-1);
   }
 

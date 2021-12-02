@@ -3,11 +3,12 @@ import { useHistory } from "react-router-dom";
 import imgClose from "../../assets/fechar.svg";
 import iconPasswordInvisible from "../../assets/password-invisible.svg";
 import iconPasswordVisible from "../../assets/password-visible.svg";
+import toast from "../../helpers/toast";
 import useUsers from "../../hooks/useUsers";
 import "./styles.css";
 
 function Login() {
-  const { userLocalStorage, setToken, openModal, setOpenModal } = useUsers();
+  const { userLocalStorage, setToken } = useUsers();
 
   const [userLogin, setUserLogin] = useState({ username: "", password: "" });
   const history = useHistory();
@@ -26,7 +27,7 @@ function Login() {
       setUserLogin({ username: "", password: "" });
       history.push("/dashboard");
     } else {
-      setOpenModal(true);
+      toast.messageError("Usuário ou senha incorretos!")
       setToken();
     }
   }
@@ -34,15 +35,11 @@ function Login() {
   return (
     <div className="container-login">
       <h1>Entrar</h1>
-      {openModal && (
-        <span className="failed">Usuário ou senha incorretos!</span>
-      )}
       <img
         className="close"
         src={imgClose}
         alt="Fechar"
         onClick={() => {
-          setOpenModal(false);
           history.push("/");
         }}
       />
@@ -55,7 +52,6 @@ function Login() {
             value={userLogin.username}
             onChange={(e) => {
               setUserLogin({ ...userLogin, username: e.target.value });
-              setOpenModal(false);
             }}
             type="text"
             placeholder="Digite seu nome."
@@ -70,7 +66,6 @@ function Login() {
             value={userLogin.password}
             onChange={(e) => {
               setUserLogin({ ...userLogin, password: e.target.value });
-              setOpenModal(false);
             }}
             type={passwordVisible ? "text" : "password"}
             id="password"

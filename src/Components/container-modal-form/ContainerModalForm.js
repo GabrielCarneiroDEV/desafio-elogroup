@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocalStorage } from "react-use";
 import closeIcon from "../../assets/fechar.svg";
 import useUsers from "../../hooks/useUsers";
+import toast from "../../helpers/toast"
 import "../../styles/globals.css"
 import "./styles.css";
 
@@ -60,9 +61,10 @@ function ContainerModalForm({
       id: lastIdLocalStorage,
     });
     setOpenForm(false);
+    toast.messageSuccess("Lead criado com sucesso!")
     setOpenModal(true);
   }
-
+  
   return (
     <div onClick={() => setOpenForm(false)} className="backdrop-modal-leads">
       {openForm && (
@@ -190,7 +192,9 @@ function ContainerModalForm({
         </div>
       )}
       {openModal && (
+        
         <div
+   
           className="modal-success-background"
           onClick={() => {
             setOpenModal(false);

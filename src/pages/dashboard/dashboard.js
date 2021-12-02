@@ -23,7 +23,7 @@ function Dashboard() {
   const [openDetails, setOpenDetails] = useState(-1);
   const [openForm, setOpenForm] = useState(false);
   const [allLeads, setAllLeads] = useState([]);
-  const { setToken, openModal, token } = useUsers();
+  const { setToken, token } = useUsers();
   const [openConfirmDelete, setOpenConfirmDelete] = useState(null);
   const [dragId, setDragId] = useState({ id: 0, lastPosition: "" });
   const [stateLead, setStateLead] = useState("left");
@@ -122,7 +122,7 @@ function Dashboard() {
           setLeadsLocalStorage={setLeadsLocalStorage}
         />
       )}
-      {openForm || openModal ? (
+      {openForm ? (
         <ContainerModalForm
           setLeadsLocalStorage={setLeadsLocalStorage}
           leadsLocalStorage={leadsLocalStorage}
